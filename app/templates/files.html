@@ -1,0 +1,11 @@
+-{% extends "base.html" %}
+
+{% block main %}
+<h1>Photos</h1>
+{% for p in photo %}
+<img src="{{url_for('static',filename='/uploads/'+p)}}" width="100%" height="100%">
+
+{% endfor %}
+
+
+{% endblock %}

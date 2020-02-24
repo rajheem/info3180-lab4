@@ -34,7 +34,8 @@ def upload():
     # Instantiate your form class
     form=UploadForm()
     # Validate file upload on submit
-    
+    if request.method=='GET':
+        return render_template('upload.html',form=form)
     if request.method == 'POST':
         if form.validate_on_submit():
             f = form.upload.data
@@ -65,6 +66,26 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out', 'success')
     return redirect(url_for('home'))
+
+
+def get_uploaded_images():
+    photo=[]
+    for subdir,dirs,files in os.walk(os.path.join(os.getcwd(),app.config['UPLOAD_FOLDER'])):
+        print (files)
+        for file in files:
+            if file!='.gitkeep':
+                filename=file
+                print(filename)
+                photo.append(filename)
+    return photo
+
+@app.route('/files',methods=['GET'])
+def files():
+    if not session.get('logged_in'):
+        abort(401)
+    else:
+        return render_template('files.html', photo=get_uploaded_images()) 
+    
 
 
 ###
