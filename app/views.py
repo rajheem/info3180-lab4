@@ -40,7 +40,7 @@ def upload():
         if form.validate_on_submit():
             f = form.upload.data
             filename = secure_filename(f.filename)
-            f.save(os.path.join(app.instance_path,app.config['UPLOAD_FOLDER'],filename))
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
         # Get file data and save to your uploads folder
             flash('File Saved', 'success')
             return redirect(url_for('home'))

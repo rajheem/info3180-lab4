@@ -7,10 +7,9 @@ PASSWORD = 'password123'
 # SECRET_KEY is needed for session security, the flash() method in this case stores the message in a session
 SECRET_KEY = 'Sup3r$3cretkey'
 
-UPLOAD_FOLDER= r'C:\Users\sharole\Documents\info3180-lab4\app\static\uploads'
+UPLOAD_FOLDER= "./app/static/uploads"
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER 
 app.config.from_object(__name__)
 
 from app import views
